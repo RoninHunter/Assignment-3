@@ -41,10 +41,10 @@ exports.create = function(req, res) {
   /* Then save the listing */
   listing.save(function(err) {
     if(err) {
-        console.log(err);
+        //console.log(err);
         res.status(400).send(err);
     } else {
-        console.log(listing)
+        //console.log(listing)
         res.json(listing);
     }
   });
@@ -68,6 +68,11 @@ exports.update = function(req, res) {
   listing.name        = req.body.name;
   listing.code        = req.body.code;
   listing.address     = req.body.address;
+  
+  if(req.results) {
+    listing.coordinates = { latitude: req.results.lat, longitude: req.results.lng };
+  }
+
   listing.updated_at  = new Date();
 
   /* Save the listing */

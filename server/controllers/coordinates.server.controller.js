@@ -38,7 +38,7 @@ module.exports = function(req, res, next) {
           res.status(400).send(err);
         }
         var data = JSON.parse(body);
-        req.results = data.results[0].geometry.location;
+        req.results = data.results[0].geometry;
 
 
         next();
